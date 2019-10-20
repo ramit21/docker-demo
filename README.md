@@ -4,13 +4,13 @@ Docker maven plugin demo
 
 POC to showcase how using DMP, you can build (via Dockerfile) and push a docker image to docker hub. 
 
-1. Install Docker on your system (win/Mac/Ec2 instance), and install docker.
+1. Install Docker on your system (win/Mac/Ec2 instance).
 
-2. Check docker setup, run the command
- 
-```
-docker container run hello-world
-```   
+2. To check docker setup, run the command:
+
+	```
+	docker container run hello-world
+	```
 
 3. Create an account on docker hub, and specify the credentials in Docker Mavan plugin auth section (or maven settings.xml)
 
