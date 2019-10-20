@@ -20,33 +20,33 @@ POC to showcase how using DMP, you can build (via Dockerfile) and push a docker 
 
 6. Run maven package command and see the docker plugin doing its work in the logs. 
 
-```
-mvn package
-```
+	```
+	mvn package
+	```
 
 7. Check the images present and see the new image now created.
 
-```
-docker image ls
-```
+	```
+	docker image ls
+	```
 
 8. Start a container using this image.
 
-```
-docker container run -p8080:8080 -it ramit21/docker-demo-application
-```
+	```
+	docker container run -p8080:8080 -it ramit21/docker-demo-application
+	```
 
 9. Check the application:
 
-```
-localhost:8080/
-```
+	```
+	localhost:8080/
+	```
 
 10. To push the image to docker hub, run the package command as below. Note that just like the docker:build has been captured as part of the plugin 
 as an execution step, the docker:push can also be made part of the plugin itself, but ideally push should be kept separate.
 
-```
-mvn package docker:push
-```
+	```
+	mvn package docker:push
+	```
 
 11. Check the docker hub repositories to see the new image present there.
