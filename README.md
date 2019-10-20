@@ -70,7 +70,7 @@ All the services, networks and published ports are defined in a single YAML file
 	docker-compose logs -f my-demo-webapp
 	```
 
-3. Note that both he containers have been created in a common network. Hence if you run an exec bash to one of them, you should be able to ping the other.
+3. Note that both the containers have been created in a common network. Hence if you run an exec bash to one of them, you should be able to ping the other.
 
 	```
 	docker container ls
