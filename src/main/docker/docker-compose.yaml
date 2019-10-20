@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+
+  my-demo-webapp:
+    image: ramit21/docker-demo-application
+    networks: 
+      - my-network
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+      
+  database:
+    image: mysql:5
+    networks: 
+      - my-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=fleetman
+      
+networks:
+  my-network:
+  
+    
+    

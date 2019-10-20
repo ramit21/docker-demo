@@ -1,5 +1,6 @@
-# docker-demo
-Docker maven plugin demo
+# Docker maven plugin & Docker compose demo
+
+## Docker Maven Plugin (DMP)
 
 
 POC to showcase how using DMP, you can build (via Dockerfile) and push a docker image to docker hub. 
@@ -50,3 +51,36 @@ as an execution step, the docker:push can also be made part of the plugin itself
 	```
 
 11. Check the docker hub repositories to see the new image present there.
+
+## Docker Compose
+
+All the services, networks and published ports are defined in a single YAML file, which is then executed by docker-compose to create the architecture. Since these files are supposed to create the entire architecture, they should be kept in a common module, and not really in 1 specific application. For simplicity, in this POC, this file is kept at same location as dockerfile above, i.e. src/main/docker/. The given docker file will create a newtork and 2 services in that network, one for the web app application container, and the other for a database (although this poc application doesn't really connects to that database).
+
+1. Run the below command and see the two containers for the springboot app and for mysql db created.
+
+	```
+	cd /src/main/docker/
+	
+	docker-compose up -d
+	```
+
+2. Check logs of individual service (notice that we give service name here, not container name):
+	
+	```
+	docker-compose logs -f my-demo-webapp
+	```
+
+3. Note that both he containers have been created in a common network. Hence if you run an exec bash to one of them, you should be able to ping the other.
+
+	```
+	docker container ls
+	docker container exec -it <web-app contianer id> /bin/sh 
+	ping <database container id>
+	exit
+	```
+	
+4. Tear the down the architecture by running the below command and notice that everything including the network gets pruned.
+
+	```
+	docker compose-down
+	```
