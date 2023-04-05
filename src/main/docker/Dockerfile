@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jdk-alpine
+FROM openjdk:11 as build
 
 MAINTAINER Ramit Sharma "ramit21"
 

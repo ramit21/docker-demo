@@ -1,9 +1,12 @@
 # Docker maven plugin & Docker compose demo
 
+POC to showcase how using DMP, you can build (via Dockerfile) and push a docker image to docker hub.
+
+This project runs on JDK 11.
+
 ## Docker Maven Plugin (DMP)
 
 
-POC to showcase how using DMP, you can build (via Dockerfile) and push a docker image to docker hub. 
 
 1. Install Docker on your system (win/Mac/Ec2 instance).
 
@@ -13,13 +16,14 @@ POC to showcase how using DMP, you can build (via Dockerfile) and push a docker 
 	docker container run hello-world
 	```
 
-3. Create an account on docker hub, and specify the credentials in Docker Mavan plugin auth section (or maven settings.xml)
+3. Create an account on docker hub, and specify the credentials in Docker Mavan plugin auth section (replace PASSWORD with actual value)
 
 4. Note the <execution> tag in the pom for this plugin, which will ensure that this plugin gets invoked everytime you run mvn package on this project.
 
 5. Take note of the Dockerfile present under /src/main/docker/
 
 6. Run maven package command and see the docker plugin doing its work in the logs. 
+   The plugin in pom is configured to run docker build command on mvn package.
 
 	```
 	mvn package
@@ -84,3 +88,9 @@ All the services, networks and published ports are defined in a single YAML file
 	```
 	docker compose-down
 	```
+
+### Note
+
+In this project we have used DMP plugin to build and push the image to Dockerhub.
+You may not use DMP, and instead configure steps in repo commit build (teamcity/gitlab etc)
+to build the image, login to remote repo (Dockerhub, AWS ECR, etc.) , and then push the image to the remote repo.
